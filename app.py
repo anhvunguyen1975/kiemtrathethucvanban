@@ -28,7 +28,7 @@ hide_st_style = """
 <style>
 #MainMenu {visibility: hidden;}
 #GithubIcon {visibility: hidden;}
-.viewerBadge_container__1QS13 {display: none !important;}
+.styles_viewerBadge__1yB5_, .viewerBadge_link__1S137, .viewerBadge_text__1JaDK {display: none !important;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 #stDecoration {display: none;}
