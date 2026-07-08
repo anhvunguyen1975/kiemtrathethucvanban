@@ -27,6 +27,7 @@ st.set_page_config(
 hide_st_style = """
 <style>
 #MainMenu {visibility: hidden;}
+#GithubIcon {visibility: hidden;}
 .viewerBadge_container__1QS13 {display: none !important;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
