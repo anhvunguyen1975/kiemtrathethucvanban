@@ -15,6 +15,7 @@ custom_css = """
 <style>
   /* Ẩn các nút rác của Streamlit Cloud */
   .stAppDeployButton {display: none !important;}
+  #MainMenu {visibility: hidden;}
   header {background-color: transparent !important;} /* Ngăn thanh header che mất nút */
   
   /* Ép nút mũi tên hiển thị và mang màu sắc nổi bật */
@@ -43,17 +44,6 @@ st.set_page_config(
 # from reportlab.pdfbase.ttfonts import TTFont
 # from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
-
-# Ẩn nút Deploy mặc định của Streamlit
-hide_streamlit_style = """
-<style>
-  #MainMenu {visibility: hidden;}
-            header {visibility: hidden;}
-            footer {visibility: hidden;}
-            .viewerBadge_container__171of {display: none !important;}
-</style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
