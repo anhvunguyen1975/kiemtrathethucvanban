@@ -11,6 +11,12 @@ import os
 import unicodedata  
 import json  
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
+st.set_page_config(
+    page_title="Kiểm tra thể thức văn bản NĐ 30", 
+    page_icon="🛡️", 
+    layout="wide",
+    initial_sidebar_state="expanded" 
+)
 custom_css = """
 <style>
   /* Ẩn các nút rác của Streamlit Cloud */
