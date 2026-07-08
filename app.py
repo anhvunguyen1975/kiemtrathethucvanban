@@ -23,30 +23,16 @@ st.set_page_config(
 # from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
 
-# Đoạn mã CSS mới để xóa bỏ hoàn toàn Header, Footer và logo quảng cáo
-hide_all_streamlit_elements = """
-            <style>
-            /* Ẩn Menu hamburger, Header và Footer truyền thống */
-            #MainMenu {visibility: hidden; display: none !important;}
-            header {visibility: hidden; display: none !important;}
-            footer {visibility: hidden; display: none !important;}
-            
-            /* Ẩn nút "Deploy" / "Fork" / "GitHub" ở góc trên bên phải (Tương thích mọi phiên bản) */
-            .stDeployButton {visibility: hidden; display: none !important;}
-            .stAppDeployButton {visibility: hidden; display: none !important;}
-            [data-testid="stAppDeployButton"] {visibility: hidden; display: none !important;}
-            
-            /* Ẩn huy hiệu GitHub và nút điều hướng góc phải trên Streamlit Community Cloud */
-            .styles_viewerBadge__1yB5_ {display: none !important;}
-            .viewerBadge_container__171of {display: none !important;}
-            #GithubIcon {visibility: hidden; display: none !important;}
-            
-            /* Triệt tiêu khoảng trống thừa và thanh trang trí màu đỏ phía trên cùng */
-            [data-testid="stDecoration"] {display: none !important;}
-            div[data-testid="stStatusWidget"] {visibility: hidden; display: none !important;}
-            </style>
-            """
-st.markdown(hide_all_streamlit_elements, unsafe_allow_html=True)
+# Ẩn menu, footer, logo Streamlit và thanh trang trí
+hide_st_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+#stDecoration {display: none;}
+</style>
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
