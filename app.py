@@ -13,16 +13,22 @@ import json
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
 custom_css = """
 <style>
-  /* Ẩn nút Deploy và Menu mặc định của Streamlit */
+  /* Ẩn các nút rác của Streamlit Cloud */
   .stAppDeployButton {display: none !important;}
   #MainMenu { visibility: hidden !important; }
+  header {background-color: transparent !important;} /* Ngăn thanh header che mất nút */
   
-  /* ÉP NÚT MŨI TÊN MỞ SIDEBAR LUÔN HIỆN RÕ Ở GÓC TRÁI */
+  /* Ép nút mũi tên hiển thị và mang màu sắc nổi bật */
   [data-testid="collapsedControl"] {
       display: flex !important;
       visibility: visible !important;
-      z-index: 999999 !important; /* Đẩy nút này nổi lên lớp trên cùng */
-      background-color: transparent !important;
+      z-index: 999999 !important;
+  }
+  
+  /* Ép màu cho icon bên trong nút để chống tàng hình */
+  [data-testid="collapsedControl"] svg {
+      fill: #ff4b4b !important; /* Đổi sang màu đỏ hoặc màu bạn thích */
+      color: #ff4b4b !important;
   }
 </style>
 """
@@ -31,7 +37,7 @@ st.set_page_config(
     page_title="Kiểm tra thể thức văn bản NĐ 30", 
     page_icon="🛡️", 
     layout="wide",
-    initial_sidebar_state="expanded" # Ép thanh slide luôn mở sẵn khi vừa vào web
+    initial_sidebar_state="expanded" 
 )
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
 # from reportlab.pdfbase import pdfmetrics
