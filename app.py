@@ -17,6 +17,11 @@ import json
 # from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
 
+st.set_page_config(
+    page_title="Kiểm tra thể thức văn bản NĐ 30",
+    page_icon="🛡️",
+    layout="wide"
+)
 # Ẩn nút Deploy mặc định của Streamlit
 hide_streamlit_style = """
 <style>
@@ -27,12 +32,6 @@ hide_streamlit_style = """
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-st.set_page_config(
-    page_title="Kiểm tra thể thức văn bản NĐ 30",
-    page_icon="🛡️",
-    layout="wide"
-)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
