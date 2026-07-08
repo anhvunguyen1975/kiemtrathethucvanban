@@ -13,8 +13,8 @@ import json
 
 # Thêm dòng này ở ngay đầu ứng dụng
 st.set_page_config(
-    page_title="Tên Ứng Dụng Của Bạn",
-    page_icon="🚀", # Có thể thay bằng emoji khác hoặc đường dẫn file ảnh "assets/my_icon.png"
+    page_title="Kiểm tra thể thức văn bản NĐ 30",
+    page_icon="🛡️",
     layout="centered"
 )
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
