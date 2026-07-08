@@ -12,7 +12,7 @@ import unicodedata
 import json  
 
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
-from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
