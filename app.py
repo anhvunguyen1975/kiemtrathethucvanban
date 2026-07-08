@@ -11,17 +11,18 @@ import os
 import unicodedata  
 import json  
 
+# Thêm dòng này ở ngay đầu ứng dụng
+st.set_page_config(
+    page_title="Tên Ứng Dụng Của Bạn",
+    page_icon="🚀", # Có thể thay bằng emoji khác hoặc đường dẫn file ảnh "assets/my_icon.png"
+    layout="centered"
+)
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
 # from reportlab.pdfbase import pdfmetrics
 # from reportlab.pdfbase.ttfonts import TTFont
 # from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
 
-st.set_page_config(
-    page_title="Kiểm tra thể thức văn bản NĐ 30",
-    page_icon="🛡️",
-    layout="wide"
-)
 # Ẩn nút Deploy mặc định của Streamlit
 hide_streamlit_style = """
 <style>
