@@ -26,17 +26,24 @@ st.set_page_config(
 # Đoạn mã CSS mới để xóa bỏ hoàn toàn Header, Footer và logo quảng cáo
 hide_all_streamlit_elements = """
             <style>
-            #MainMenu {visibility: hidden;}
+            /* Ẩn Menu hamburger, Header và Footer truyền thống */
+            #MainMenu {visibility: hidden; display: none !important;}
             header {visibility: hidden; display: none !important;}
             footer {visibility: hidden; display: none !important;}
             
-            /* Ẩn thanh công cụ kết nối GitHub và nút Manage App ở góc phải dưới */
-            div[data-testid="stStatusWidget"] {visibility: hidden; display: none !important;}
-            .viewerBadge_container__171of {display: none !important;}
-            iframe[title="Managed Hosting Footer"] {display: none !important;}
+            /* Ẩn nút "Deploy" / "Fork" / "GitHub" ở góc trên bên phải (Tương thích mọi phiên bản) */
+            .stDeployButton {visibility: hidden; display: none !important;}
+            .stAppDeployButton {visibility: hidden; display: none !important;}
+            [data-testid="stAppDeployButton"] {visibility: hidden; display: none !important;}
             
-            /* Bẻ khóa toàn bộ các phần tử chứa quảng cáo hoặc logo Streamlit Cloud */
+            /* Ẩn huy hiệu GitHub và nút điều hướng góc phải trên Streamlit Community Cloud */
+            .styles_viewerBadge__1yB5_ {display: none !important;}
+            .viewerBadge_container__171of {display: none !important;}
+            #GithubIcon {visibility: hidden; display: none !important;}
+            
+            /* Triệt tiêu khoảng trống thừa và thanh trang trí màu đỏ phía trên cùng */
             [data-testid="stDecoration"] {display: none !important;}
+            div[data-testid="stStatusWidget"] {visibility: hidden; display: none !important;}
             </style>
             """
 st.markdown(hide_all_streamlit_elements, unsafe_allow_html=True)
