@@ -1,0 +1,352 @@
+2026-07-05 18:44:46,892 DEBUG - Starting WinSW in service mode
+2026-07-05 18:52:17,645 DEBUG - Starting WinSW in console mode
+2026-07-05 18:52:18,190 DEBUG - Starting WinSW in console mode
+2026-07-05 18:52:18,217 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 18:52:18,251 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 18:52:53,816 DEBUG - Starting WinSW in console mode
+2026-07-05 18:52:54,306 DEBUG - Starting WinSW in console mode
+2026-07-05 18:52:54,442 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 18:52:54,720 DEBUG - Starting WinSW in service mode
+2026-07-05 18:52:54,745 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 18:52:54,843 INFO  - Starting C:\Users\User\AppData\Roaming\Python\Python314\Scripts\streamlit.exe run app.py --server.port 8501 --server.address 127.0.0.1 --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 18:52:54,902 INFO  - Started process 7404
+2026-07-05 18:52:54,912 DEBUG - Forwarding logs of the process System.Diagnostics.Process (streamlit) to WinSW.RollingLogAppender
+2026-07-05 19:20:29,869 DEBUG - Starting WinSW in console mode
+2026-07-05 19:20:29,895 FATAL - Unhandled exception
+System.Exception: Unknown command: uninstal
+   at WinSW.Program.Run(String[] argsArray, IServiceConfig config)
+   at WinSW.Program.Main(String[] args)
+2026-07-05 19:20:38,591 DEBUG - Starting WinSW in console mode
+2026-07-05 19:20:39,104 DEBUG - Starting WinSW in console mode
+2026-07-05 19:20:39,131 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:20:39,135 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 19:20:39,137 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 19:20:45,667 DEBUG - Starting WinSW in console mode
+2026-07-05 19:20:46,158 DEBUG - Starting WinSW in console mode
+2026-07-05 19:20:46,186 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:20:46,196 FATAL - Cannot start service 'StreamlitAppService' on computer '.'.
+2026-07-05 19:27:09,446 DEBUG - Starting WinSW in console mode
+2026-07-05 19:27:09,470 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:27:09,475 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-05 19:27:09,768 DEBUG - Starting WinSW in console mode
+2026-07-05 19:27:09,794 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:27:09,810 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 19:27:10,101 DEBUG - Starting WinSW in console mode
+2026-07-05 19:27:10,130 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:27:10,416 DEBUG - Starting WinSW in service mode
+2026-07-05 19:27:10,440 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 19:27:10,539 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run "D:\Vu\IT\2026\The-thuc-van-ban\app.py" --server.port 8501 --server.address 127.0.0.1 --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 19:27:10,563 INFO  - Started process 10364
+2026-07-05 19:27:10,575 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-05 19:33:11,933 DEBUG - Starting WinSW in console mode
+2026-07-05 19:33:11,962 INFO  - Stopping service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:33:11,969 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' stopped successfully.
+2026-07-05 19:33:11,970 INFO  - Stopping StreamlitAppService
+2026-07-05 19:33:11,970 DEBUG - ProcessKill 10364
+2026-07-05 19:33:11,972 DEBUG - Stopping process 10364...
+2026-07-05 19:33:26,988 DEBUG - Process 10364 terminated.
+2026-07-05 19:33:26,992 INFO  - Finished StreamlitAppService
+2026-07-05 19:37:04,795 DEBUG - Starting WinSW in console mode
+2026-07-05 19:37:04,819 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:37:04,824 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-05 19:37:11,880 DEBUG - Starting WinSW in console mode
+2026-07-05 19:37:11,907 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:37:11,922 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 19:37:18,170 DEBUG - Starting WinSW in console mode
+2026-07-05 19:37:18,198 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:37:18,483 DEBUG - Starting WinSW in service mode
+2026-07-05 19:37:18,508 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 19:37:18,609 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 19:37:18,634 INFO  - Started process 16056
+2026-07-05 19:37:18,645 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-05 19:49:34,517 DEBUG - Starting WinSW in console mode
+2026-07-05 19:49:34,541 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:49:34,545 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' is started. It may be impossible to uninstall it.
+2026-07-05 19:49:34,546 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-05 19:49:41,771 DEBUG - Starting WinSW in console mode
+2026-07-05 19:49:41,795 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:49:41,800 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 19:49:41,802 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 19:49:46,176 DEBUG - Starting WinSW in console mode
+2026-07-05 19:49:46,206 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 19:49:46,214 FATAL - Cannot start service 'StreamlitAppService' on computer '.'.
+2026-07-05 19:56:13,133 INFO  - Stopping StreamlitAppService
+2026-07-05 19:56:13,133 DEBUG - ProcessKill 16056
+2026-07-05 19:56:13,136 DEBUG - Stopping process 16056...
+2026-07-05 19:56:28,150 DEBUG - Process 16056 terminated.
+2026-07-05 19:56:28,153 INFO  - Finished StreamlitAppService
+2026-07-05 20:02:28,004 DEBUG - Starting WinSW in console mode
+2026-07-05 20:02:28,030 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:02:28,037 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' does not exist.
+2026-07-05 20:02:33,473 DEBUG - Starting WinSW in console mode
+2026-07-05 20:02:33,498 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:02:33,513 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 20:02:36,944 DEBUG - Starting WinSW in console mode
+2026-07-05 20:02:36,972 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:02:37,246 DEBUG - Starting WinSW in service mode
+2026-07-05 20:02:37,270 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 20:02:37,363 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 20:02:37,386 INFO  - Started process 5516
+2026-07-05 20:02:37,396 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-05 20:03:57,696 DEBUG - Starting WinSW in console mode
+2026-07-05 20:03:57,720 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:03:57,724 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' is started. It may be impossible to uninstall it.
+2026-07-05 20:03:57,725 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-05 20:04:02,470 DEBUG - Starting WinSW in console mode
+2026-07-05 20:04:02,496 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:04:02,500 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 20:04:02,501 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 20:04:09,243 DEBUG - Starting WinSW in console mode
+2026-07-05 20:04:09,272 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:04:09,280 FATAL - Cannot start service 'StreamlitAppService' on computer '.'.
+2026-07-05 20:23:27,844 DEBUG - Starting WinSW in console mode
+2026-07-05 20:23:27,869 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:23:27,874 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' does not exist.
+2026-07-05 20:23:33,956 DEBUG - Starting WinSW in console mode
+2026-07-05 20:23:33,981 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:23:33,998 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 20:23:40,003 DEBUG - Starting WinSW in console mode
+2026-07-05 20:23:40,030 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:23:40,307 DEBUG - Starting WinSW in service mode
+2026-07-05 20:23:40,331 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 20:23:40,427 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 20:23:40,449 INFO  - Started process 7424
+2026-07-05 20:23:40,460 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-05 20:29:32,449 DEBUG - Starting WinSW in console mode
+2026-07-05 20:29:32,473 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:29:32,477 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 20:29:32,478 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 20:30:31,290 DEBUG - Starting WinSW in console mode
+2026-07-05 20:30:31,314 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 20:30:31,320 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 20:30:31,321 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 20:36:12,413 DEBUG - Starting WinSW in service mode
+2026-07-05 20:36:12,528 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false
+2026-07-05 20:36:12,550 INFO  - Started process 10592
+2026-07-05 20:36:12,560 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-05 21:02:19,277 DEBUG - Starting WinSW in console mode
+2026-07-05 21:02:19,301 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:02:19,306 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' is started. It may be impossible to uninstall it.
+2026-07-05 21:02:19,307 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-05 21:02:19,595 DEBUG - Starting WinSW in console mode
+2026-07-05 21:02:19,620 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:02:19,624 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-05 21:02:19,626 FATAL - Failed to install the service. The specified service already exists.
+2026-07-05 21:02:19,914 DEBUG - Starting WinSW in console mode
+2026-07-05 21:02:19,941 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:02:19,950 FATAL - Cannot start service 'StreamlitAppService' on computer '.'.
+2026-07-05 21:03:03,056 INFO  - Stopping StreamlitAppService
+2026-07-05 21:03:03,056 DEBUG - ProcessKill 10592
+2026-07-05 21:03:03,059 DEBUG - Stopping process 10592...
+2026-07-05 21:03:03,363 DEBUG - Process 10592 canceled with code 0.
+2026-07-05 21:03:03,367 INFO  - Finished StreamlitAppService
+2026-07-05 21:03:23,508 DEBUG - Starting WinSW in console mode
+2026-07-05 21:03:23,531 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:03:23,537 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' does not exist.
+2026-07-05 21:03:23,828 DEBUG - Starting WinSW in console mode
+2026-07-05 21:03:23,851 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:03:23,869 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-05 21:03:24,169 DEBUG - Starting WinSW in console mode
+2026-07-05 21:03:24,196 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-05 21:03:24,472 DEBUG - Starting WinSW in service mode
+2026-07-05 21:03:24,496 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-05 21:03:24,595 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-05 21:03:24,617 INFO  - Started process 4528
+2026-07-05 21:03:24,629 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-06 07:28:57,093 DEBUG - Starting WinSW in console mode
+2026-07-06 07:28:57,191 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:28:57,260 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-06 07:29:13,128 DEBUG - Starting WinSW in console mode
+2026-07-06 07:29:13,482 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:29:15,029 DEBUG - Starting WinSW in service mode
+2026-07-06 07:29:15,081 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-06 07:29:15,287 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:29:15,329 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:32:32,570 DEBUG - Starting WinSW in service mode
+2026-07-06 07:32:32,797 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:32:32,838 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:36:57,426 DEBUG - Starting WinSW in console mode
+2026-07-06 07:36:57,478 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:36:57,490 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-06 07:37:06,584 DEBUG - Starting WinSW in console mode
+2026-07-06 07:37:06,659 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:37:06,668 ERROR - A service with ID 'StreamlitAppService' already exists.
+2026-07-06 07:37:06,672 FATAL - Failed to install the service. The specified service already exists.
+2026-07-06 07:37:15,200 DEBUG - Starting WinSW in console mode
+2026-07-06 07:37:15,260 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:37:15,280 FATAL - Cannot start service 'StreamlitAppService' on computer '.'.
+2026-07-06 07:38:44,100 DEBUG - Starting WinSW in console mode
+2026-07-06 07:38:44,156 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:38:44,168 ERROR - Failed to delete service. The specified service has been marked for deletion.
+2026-07-06 07:42:04,078 DEBUG - Starting WinSW in console mode
+2026-07-06 07:42:04,129 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:42:05,863 ERROR - Failed to delete service. The specified service has been marked for deletion.
+2026-07-06 07:43:11,751 DEBUG - Starting WinSW in console mode
+2026-07-06 07:43:11,800 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:43:13,532 WARN  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' does not exist.
+2026-07-06 07:43:27,377 DEBUG - Starting WinSW in console mode
+2026-07-06 07:43:27,425 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:43:27,457 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-06 07:43:33,672 DEBUG - Starting WinSW in console mode
+2026-07-06 07:43:33,728 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:43:34,277 DEBUG - Starting WinSW in service mode
+2026-07-06 07:43:34,322 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-06 07:43:34,512 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:43:34,554 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:43:58,028 DEBUG - Starting WinSW in service mode
+2026-07-06 07:43:58,257 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:43:58,297 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:44:19,749 DEBUG - Starting WinSW in service mode
+2026-07-06 07:44:19,980 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:44:20,027 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:50:43,095 DEBUG - Starting WinSW in service mode
+2026-07-06 07:50:43,339 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:50:43,394 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:52:05,555 DEBUG - Starting WinSW in service mode
+2026-07-06 07:52:05,783 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:52:05,821 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:52:55,054 DEBUG - Starting WinSW in service mode
+2026-07-06 07:52:55,333 INFO  - Starting D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 07:52:56,932 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (2): An error occurred trying to start process 'D:\Vu\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The system cannot find the file specified.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 07:59:54,678 DEBUG - Starting WinSW in console mode
+2026-07-06 07:59:54,831 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 07:59:54,850 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-06 08:00:14,877 DEBUG - Starting WinSW in console mode
+2026-07-06 08:00:14,979 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 08:00:15,032 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-06 08:00:27,389 DEBUG - Starting WinSW in console mode
+2026-07-06 08:00:27,478 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 08:00:28,034 DEBUG - Starting WinSW in service mode
+2026-07-06 08:00:28,084 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-06 08:00:28,404 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 08:00:28,510 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (267): An error occurred trying to start process 'D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The directory name is invalid.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 08:00:50,032 DEBUG - Starting WinSW in service mode
+2026-07-06 08:00:50,268 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 08:00:50,313 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (267): An error occurred trying to start process 'D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The directory name is invalid.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 08:01:18,749 DEBUG - Starting WinSW in service mode
+2026-07-06 08:01:18,977 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8502 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 08:01:19,020 ERROR - Failed to start service.
+System.ComponentModel.Win32Exception (267): An error occurred trying to start process 'D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe' with working directory 'D:\Vu\IT\2026\The-thuc-van-ban'. The directory name is invalid.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo )
+   at System.Diagnostics.Process.StartCore(ProcessStartInfo )
+   at System.Diagnostics.Process.Start()
+   at WinSW.Util.ProcessHelper.StartProcessAndCallbackForExit(Process processToStart, String executable, String arguments, Dictionary`2 envVars, String workingDirectory, Nullable`1 priority, ProcessCompletionCallback callback, LogHandler logHandler, Boolean hideWindow)
+   at WinSW.WrapperService.StartProcess(Process processToStart, String arguments, String executable, LogHandler logHandler)
+   at WinSW.WrapperService.DoStart()
+   at WinSW.WrapperService.OnStart(String[] args)
+2026-07-06 08:02:23,293 DEBUG - Starting WinSW in console mode
+2026-07-06 08:02:23,360 INFO  - Stopping service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 08:02:23,385 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' has already stopped.
+2026-07-06 09:09:46,999 DEBUG - Starting WinSW in console mode
+2026-07-06 09:09:47,081 INFO  - Uninstalling service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 09:09:47,092 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was uninstalled successfully.
+2026-07-06 09:18:29,954 DEBUG - Starting WinSW in console mode
+2026-07-06 09:18:30,011 INFO  - Installing service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 09:18:30,049 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' was installed successfully.
+2026-07-06 09:18:39,576 DEBUG - Starting WinSW in console mode
+2026-07-06 09:18:39,638 INFO  - Starting service 'Streamlit App Service (WinSW) (StreamlitAppService)'...
+2026-07-06 09:18:40,318 DEBUG - Starting WinSW in service mode
+2026-07-06 09:18:40,374 INFO  - Service 'Streamlit App Service (WinSW) (StreamlitAppService)' started successfully.
+2026-07-06 09:18:40,621 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 09:18:40,831 INFO  - Started process 7792
+2026-07-06 09:18:40,861 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-06 12:49:36,146 DEBUG - Starting WinSW in service mode
+2026-07-06 12:49:36,660 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-06 12:49:36,809 INFO  - Started process 5012
+2026-07-06 12:49:36,835 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-07 07:06:20,135 DEBUG - Starting WinSW in service mode
+2026-07-07 07:06:20,717 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-07 07:06:20,983 INFO  - Started process 4452
+2026-07-07 07:06:21,008 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-07 13:05:05,798 DEBUG - Starting WinSW in service mode
+2026-07-07 13:05:06,581 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-07 13:05:06,757 INFO  - Started process 7656
+2026-07-07 13:05:06,785 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-07 16:52:31,591 DEBUG - Starting WinSW in service mode
+2026-07-07 16:52:32,089 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-07 16:52:32,482 INFO  - Started process 6540
+2026-07-07 16:52:32,506 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender
+2026-07-08 07:14:09,145 DEBUG - Starting WinSW in service mode
+2026-07-08 07:14:09,795 INFO  - Starting D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe -m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false
+2026-07-08 07:14:09,982 INFO  - Started process 7124
+2026-07-08 07:14:10,006 DEBUG - Forwarding logs of the process System.Diagnostics.Process (python) to WinSW.RollingLogAppender

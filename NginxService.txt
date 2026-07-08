@@ -1,0 +1,7 @@
+Kiểm tra trạng thái: .\NginxService.exe status
+
+Khởi động lại (Ăn cấu hình mới): .\NginxService.exe restart
+
+Tạm dừng dịch vụ: .\NginxService.exe stop
+
+Gỡ hoàn toàn dịch vụ khỏi Windows: .\NginxService.exe uninstall

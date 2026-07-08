@@ -1,0 +1,16 @@
+<service>
+  <id>StreamlitAppService</id>
+  <name>Streamlit App Service (WinSW)</name>
+  <description>Dịch vụ chạy ngầm hệ thống kiểm tra thể thức văn bản.</description>
+  
+  <workingdirectory>D:\IT\2026\The-thuc-van-ban</workingdirectory>
+  
+  <!-- 💡 CẶP DÒNG CHÍ MẠNG: Ép Streamlit tạo thư mục cấu hình .streamlit ngay tại đây, không dùng ổ C hệ thống nữa -->
+  <env name="USERPROFILE" value="D:\IT\2026\The-thuc-van-ban" />
+  <env name="HOME" value="D:\IT\2026\The-thuc-van-ban" />
+  
+  <executable>D:\IT\2026\The-thuc-van-ban\env\Scripts\python.exe</executable>
+  <arguments>-m streamlit run app.py --server.port 8501 --server.address 127.0.0.1 --server.headless true --server.enableCORS false --server.enableXsrfProtection false --server.enableWebsocketCompression false</arguments>
+  
+  <log mode="roll"></log>
+</service>

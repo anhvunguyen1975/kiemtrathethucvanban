@@ -1,0 +1,42 @@
+{
+    "ten_co_quan_me": "CÔNG TY CỔ PHẦN CẤP NƯỚC BẠC LIÊU",
+    "dia_danh_chuan": "Cà Mau",
+    "danh_sach_phong_ban": [
+        {
+            "ten": "Công ty",
+            "viet_tat": "CTY"
+        },
+		{
+            "ten": "Hội đồng quản trị",
+            "viet_tat": "HĐQT"
+        },
+		{
+            "ten": "Ban kiểm soát",
+            "viet_tat": "BKS"
+        },
+		{
+            "ten": "Phòng Tổ chức Hành chính",
+            "viet_tat": "TCHC"
+        },
+        {
+            "ten": "Phòng Kế toán",
+            "viet_tat": "KT"
+        },
+        {
+            "ten": "Phòng Kinh doanh",
+            "viet_tat": "KD"
+        },
+        {
+            "ten": "Phòng Kế hoạch Kỹ thuật",
+            "viet_tat": "KHKT"
+        },
+        {
+            "ten": "Phòng Quản lý Mạng lưới Cấp nước",
+            "viet_tat": "QLML CN"
+        },
+        {
+            "ten": "Xí nghiệp Cấp nước",
+            "viet_tat": "XNCN"
+        }
+    ]
+}
