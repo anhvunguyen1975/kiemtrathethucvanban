@@ -14,7 +14,7 @@ import json
 # Thêm dòng này ở ngay đầu ứng dụng
 st.set_page_config(
     page_title="Kiểm tra thể thức văn bản NĐ 30",
-    page_icon="🚀",
+    page_icon="💧", # Đã đổi thành icon giọt nước
     layout="centered"
 )
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
