@@ -23,18 +23,16 @@ st.set_page_config(
 # from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
 
-# Ẩn menu, footer, logo Streamlit và thanh trang trí
-hide_st_style = """
+# Ẩn nút Deploy mặc định của Streamlit
+hide_streamlit_style = """
 <style>
-#MainMenu {visibility: hidden;}
-#GithubIcon {visibility: hidden;}
-.styles_viewerBadge__1yB5_, .viewerBadge_link__1S137, .viewerBadge_text__1JaDK {display: none !important;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-#stDecoration {display: none;}
+  #MainMenu {visibility: hidden;}
+            header {visibility: hidden;}
+            footer {visibility: hidden;}
+            .viewerBadge_container__171of {display: none !important;}
 </style>
 """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
