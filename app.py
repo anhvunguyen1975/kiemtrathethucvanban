@@ -10,12 +10,28 @@ import io
 import os
 import unicodedata  
 import json  
-
-# Thêm dòng này ở ngay đầu ứng dụng
+# --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
+custom_css = """
+<style>
+  /* Ẩn nút Deploy và Menu mặc định của Streamlit */
+  .stAppDeployButton {display: none !important;}
+  #MainMenu { visibility: hidden !important; }
+  
+  /* ÉP NÚT MŨI TÊN MỞ SIDEBAR LUÔN HIỆN RÕ Ở GÓC TRÁI */
+  [data-testid="collapsedControl"] {
+      display: flex !important;
+      visibility: visible !important;
+      z-index: 999999 !important; /* Đẩy nút này nổi lên lớp trên cùng */
+      background-color: transparent !important;
+  }
+</style>
+"""
+st.markdown(custom_css, unsafe_allow_html=True)
 st.set_page_config(
-    page_title="Kiểm tra thể thức văn bản NĐ 30",
+    page_title="Kiểm tra thể thức văn bản NĐ 30", 
     page_icon="💧", # Đã đổi thành icon giọt nước
-    layout="centered"
+    layout="wide",
+    initial_sidebar_state="expanded" # Ép thanh slide luôn mở sẵn khi vừa vào web
 )
 # --- CÁC IMPORT THƯ VIỆN REPORTLAB ---
 # from reportlab.pdfbase import pdfmetrics
