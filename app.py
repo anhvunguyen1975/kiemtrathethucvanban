@@ -15,7 +15,6 @@ custom_css = """
 <style>
   /* Ẩn các nút rác của Streamlit Cloud */
   .stAppDeployButton {display: none !important;}
-  #MainMenu { visibility: hidden !important; }
   header {background-color: transparent !important;} /* Ngăn thanh header che mất nút */
   
   /* Ép nút mũi tên hiển thị và mang màu sắc nổi bật */
