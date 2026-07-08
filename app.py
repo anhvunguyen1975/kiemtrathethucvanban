@@ -29,7 +29,7 @@ custom_css = """
 st.markdown(custom_css, unsafe_allow_html=True)
 st.set_page_config(
     page_title="Kiểm tra thể thức văn bản NĐ 30", 
-    page_icon="💧", # Đã đổi thành icon giọt nước
+    page_icon="🛡️", 
     layout="wide",
     initial_sidebar_state="expanded" # Ép thanh slide luôn mở sẵn khi vừa vào web
 )
