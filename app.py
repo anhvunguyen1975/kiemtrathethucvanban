@@ -20,8 +20,10 @@ import json
 # Ẩn nút Deploy mặc định của Streamlit
 hide_streamlit_style = """
 <style>
-  .stAppDeployButton {display: none;}
-  #MainMenu { visibility: hidden !important; }
+  #MainMenu {visibility: hidden;}
+            header {visibility: hidden;}
+            footer {visibility: hidden;}
+            .viewerBadge_container__171of {display: none !important;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
