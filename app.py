@@ -115,10 +115,10 @@ def check_agency_line_comprehensive(doc):
         text = p.text.strip().upper()
         if not text: continue
         if any(tail in text for tail in valid_tails):
-            #if not is_line_present(p):
-                #warnings.append(f"⚠️ **Nhắc nhở:** Tên đơn vị `{p.text.strip()}` chưa có đường kẻ ngang. Bạn vui lòng tự kẻ thủ công nhé.")
-            #break 
-    # return warnings
+            if not is_line_present(p):
+                warnings.append("")
+            break 
+         return warnings
 
 # --- HÀM KIỂM TRA SÂU ---
 def analyze_document_v6(doc):
