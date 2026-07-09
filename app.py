@@ -399,12 +399,12 @@ if uploaded_file is not None:
                     p.text = ""
                     r = p.add_run("Độc lập - Tự do - Hạnh phúc")
                     r.bold = True; r.font.size = Pt(14); set_font_times(r)
-                    rPr = r._r.get_or_add_rPr()
-                    u = OxmlElement('w:u')
-                    u.set(qn('w:val'), 'single') 
-                    u.set(qn('w:sz'), '0.1')
-                    u.set(qn('w:space'), '12')  
-                    rPr.append(u)
+                    #rPr = r._r.get_or_add_rPr()
+                    #u = OxmlElement('w:u')
+                    #u.set(qn('w:val'), 'single') 
+                    #u.set(qn('w:sz'), '0.1')
+                    #u.set(qn('w:space'), '12')  
+                    #rPr.append(u)
                     p.alignment = 1
                     return
 
