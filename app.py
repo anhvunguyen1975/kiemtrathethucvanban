@@ -259,7 +259,7 @@ def analyze_document_v6(doc):
 
 # --- GIAO DIỆN CHÍNH ---
 st.title("KIỂM TRA THỂ THỨC VĂN BẢN (NĐ 30)")
-st.markdown("🚀 **Phiên bản V6.6:** Bổ sung cơ chế quét và tạo **đường kẻ ngang (1/3 - 1/2 độ dài)** dưới tên cơ quan ban hành.")
+st.markdown("🚀 **Phiên bản V6.6:** Bổ sung cơ chế quét tên cơ quan ban hành.")
 st.markdown("---")
 
 with st.sidebar:
