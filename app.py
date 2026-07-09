@@ -116,7 +116,7 @@ def check_agency_line_comprehensive(doc):
         if not text: continue
         if any(tail in text for tail in valid_tails):
             if not is_line_present(p):
-                warnings.append(f"⚠️ **Nhắc nhở:** Tên đơn vị `{p.text.strip()}` chưa có đường kẻ ngang. Bạn vui lòng tự kẻ thủ công nhé.")
+                #warnings.append(f"⚠️ **Nhắc nhở:** Tên đơn vị `{p.text.strip()}` chưa có đường kẻ ngang. Bạn vui lòng tự kẻ thủ công nhé.")
             break 
     return warnings
 
