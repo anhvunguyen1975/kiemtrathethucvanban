@@ -10,10 +10,10 @@ import os
 import unicodedata  
 import json  
 
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
+#from reportlab.pdfbase import pdfmetrics
+#from reportlab.pdfbase.ttfonts import TTFont
+#from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
 st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
