@@ -118,7 +118,7 @@ def check_agency_line_comprehensive(doc):
             if not is_line_present(p):
                 warnings.append("")
             break 
-         return warnings
+    return warnings
 
 # --- HÀM KIỂM TRA SÂU ---
 def analyze_document_v6(doc):
