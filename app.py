@@ -550,7 +550,7 @@ if uploaded_file is not None:
                     return
 
                # 8. ÉP CHUẨN TRÍCH YẾU (V/v...) -> Cỡ 13, Đứng, GIỮ NGUYÊN CHỮ HOA/THƯỜNG GỐC
-                if text_upper.startswith("V/V") or text_upper.replace(" ", "").startswith("VỀVIỆC"):
+                if text_upper.startswith("V/V") or text_upper.replace(" ", "").startswith("VỀ VIỆC"):
                     p.alignment = 1 # Căn giữa trích yếu
                     for r in p.runs:
                         r.font.size = Pt(13)
