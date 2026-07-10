@@ -241,7 +241,7 @@ def analyze_document_v6(doc):
     else:
         success_items.append("Chức vụ Người ký văn bản (Đã ghi nhận)")
 
-    return success_items, error_list, warning_list, ambiguous_dict
+return success_items, error_list, warning_list, ambiguous_dict
 
 # --- GIAO DIỆN CHÍNH ---
 st.title("KIỂM TRA THỂ THỨC VĂN BẢN (NĐ 30)")
