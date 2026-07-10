@@ -144,8 +144,7 @@ def analyze_document_v6(doc):
     ambiguous_dict = {} 
 
     # GỌI HÀM KIỂM TRA ĐƯỜNG KẺ NGANG
-    warning_list.extend(check_agency_line_comprehensive(doc))
-
+    #warning_list.extend(check_agency_line_comprehensive(doc))
     for idx, section in enumerate(doc.sections):
         top_cm = round(section.top_margin.cm, 2) if section.top_margin else 0
         bottom_cm = round(section.bottom_margin.cm, 2) if section.bottom_margin else 0
