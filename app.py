@@ -194,7 +194,7 @@ def analyze_document_v6(doc):
         text_lower = text_clean.lower()
         if "cấp nước bạc liêu" in text_lower or text_lower == "công ty cổ phần":
             if text_clean != text_clean.upper() or is_paragraph_bold(p):
-                error_list.append(f"❌ - [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` tại góc trái văn bản chưa được VIẾT HOA hoặc *IN ĐẬM*.")
+                error_list.append(f"❌ - [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` tại góc trái văn bản chưa được VIẾT HOA hoặc **IN ĐẬM**.")
             agency_checked = True
             #if text_clean != is_paragraph_bold(p):
             #    error_list.append(f"- [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` → tại góc trái văn bản đang được *IN ĐẬM* .")
