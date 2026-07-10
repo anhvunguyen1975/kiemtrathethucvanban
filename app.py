@@ -186,7 +186,7 @@ def analyze_document_v6(doc):
         for row in doc.tables[0].rows:
             for cell in row.cells:
                 elements_to_check.extend(cell.paragraphs)
-    elements_to_check.extend(doc.paragraphs[:3])
+    elements_to_check.extend(doc.paragraphs[:1])
 
     for p in elements_to_check:
         text_clean = p.text.replace("|", "").strip()
