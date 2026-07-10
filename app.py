@@ -410,9 +410,9 @@ if uploaded_file is not None:
                         r.bold = False       # Chữ thường, không in đậm
                         set_font_times(r)
                     return
-                # ============ THÊM ĐOẠN CODE NÀY VÀO ĐÂY ============
-                # --- SỬA LỖI TRÍCH YẾU: CĂN GIỮA DÒNG "VỀ VIỆC..." ---
-                if text_lower.startswith("về việc") or text_lower.startswith("v/v:"):
+               # ============ THÊM ĐOẠN CODE NÀY VÀO ĐÂY ============
+               # --- SỬA LỖI TRÍCH YẾU: CĂN GIỮA DÒNG "VỀ VIỆC..." ---
+               if text_lower.startswith("về việc") or text_lower.startswith("v/v:"):
                     p.alignment = 1 # Căn giữa (Center) chuẩn Nghị định 30
                     p.paragraph_format.first_line_indent = None # Bỏ lệnh thụt đầu dòng (nếu có)
                     
@@ -426,7 +426,8 @@ if uploaded_file is not None:
                         r.font.size = Pt(14) # Ép chuẩn cỡ chữ 14
                         # r.bold = False # Bỏ dấu # ở đầu dòng này nếu bạn không muốn dòng Trích yếu bị in đậm
                         set_font_times(r)
-                    return
+                   return
+                # ====================================================
                 # ====================================================
                 # --- SỬA LỖI 2: CHUẨN HÓA CỠ CHỮ 14 CHO TOÀN BỘ CÁC DÒNG NỘI DUNG CHÍNH ---
                 tu_khoa_noi_dung = ["vì vậy", "kính mong", "đề nghị", "kính trình", "do đó", "căn cứ", "thực hiện", "nhằm", "để", "sau khi"]
