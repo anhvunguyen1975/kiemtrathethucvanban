@@ -104,7 +104,38 @@ def set_font_times(run):
     rFonts.set(qn('w:eastAsia'), 'Times New Roman')
     rFonts.set(qn('w:cs'), 'Times New Roman')
 
+# --- HÀM KIỂM TRA ĐƯỜNG KẺ NGANG (CHỈ CẢNH BÁO) ---
+def check_agency_line_comprehensive(doc):
+    warnings = []
+    valid_tails = ["CẤP NƯỚC BẠC LIÊU", "CÔNG TY"] 
+    
+    def is_line_present(p):
+        xml = p._p.xml
+        if "<w:drawing" in xml or "<v:line" in xml: return True
+        if "<w:pBdr" in xml: return True
+        try:
+            if p._cell and "<w:tcBorders" in p._cell._tc.xml: return True
+        except: pass
+        if "____" in p.text or "——" in p.text: return True
+        return False
 
+    # Chỉ quét khu vực Header (Bảng đầu tiên hoặc 5 đoạn đầu)
+    elements_to_check = []
+    if doc.tables:
+        for row in doc.tables[0].rows:
+            for cell in row.cells:
+                elements_to_check.extend(cell.paragraphs)
+    elements_to_check.extend(doc.paragraphs[:5])
+
+    for p in elements_to_check:
+        text = p.text.strip().upper()
+        if not text: continue
+        if any(tail in text for tail in valid_tails):
+            if not is_line_present(p):
+                warnings.append("")
+            break 
+    return warnings
+    
 # --- HÀM KIỂM TRA SÂU ---
 def analyze_document_v6(doc):
     success_items = []
@@ -113,7 +144,7 @@ def analyze_document_v6(doc):
     ambiguous_dict = {} 
 
     # GỌI HÀM KIỂM TRA ĐƯỜNG KẺ NGANG
-    #warning_list.extend(check_agency_line_comprehensive(doc))
+    warning_list.extend(check_agency_line_comprehensive(doc))
 
     for idx, section in enumerate(doc.sections):
         top_cm = round(section.top_margin.cm, 2) if section.top_margin else 0
