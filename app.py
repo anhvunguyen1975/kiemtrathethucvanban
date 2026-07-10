@@ -16,24 +16,40 @@ import json
 #from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
-st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(
+    page_title="Kiểm tra thể thức văn bản NĐ 30", 
+    page_icon="🛡️", 
+    layout="wide",
+    initial_sidebar_state="expanded" 
+)
 custom_css = """
 <style>
+  /* Ẩn các nút rác của Streamlit Cloud */
   .stAppDeployButton {display: none !important;}
-  #MainMenu { visibility: hidden !important; }
-  header {visibility: hidden;}
-  footer {visibility: hidden;}
-  .viewerBadge_container__171of {display: none !important;}
+  #MainMenu {visibility: hidden;}
+  header {background-color: transparent !important;} /* Ngăn thanh header che mất nút */
   
+  /* Ép nút mũi tên hiển thị và mang màu sắc nổi bật */
   [data-testid="collapsedControl"] {
       display: flex !important;
       visibility: visible !important;
-      z-index: 999999 !important; 
-      background-color: transparent !important;
+      z-index: 999999 !important;
+  }
+  
+  /* Ép màu cho icon bên trong nút để chống tàng hình */
+  [data-testid="collapsedControl"] svg {
+      fill: #ff4b4b !important; /* Đổi sang màu đỏ hoặc màu bạn thích */
+      color: #ff4b4b !important;
   }
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
+st.set_page_config(
+    page_title="Kiểm tra thể thức văn bản NĐ 30", 
+    page_icon="🛡️", 
+    layout="wide",
+    initial_sidebar_state="expanded" 
+)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
