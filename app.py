@@ -9,11 +9,12 @@ import io
 import os
 import unicodedata  
 import json  
+from docx.enum.text import WD_LINE_SPACING
 
-#from reportlab.pdfbase import pdfmetrics
-#from reportlab.pdfbase.ttfonts import TTFont
-#from reportlab.pdfgen import canvas
-#from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
 st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
@@ -361,16 +362,24 @@ if uploaded_file is not None:
 
             # --- BƯỚC 3: QUÉT HEADER, CHÍNH TẢ & ÉP CHUẨN CỠ CHỮ ---
             def fix_para(p, paragraph_index):
-                
+              # 1. KHAI BÁO BIẾN TRƯỚC TIÊN
                 text_clean = p.text.strip()
                 text_upper = text_clean.upper()
     
-                # BẢO VỆ TUYỆT ĐỐI ĐƯỜNG KẺ NGANG GỐC VÀ DÒNG TRỐNG
-                # Nếu dòng chỉ chứa ký tự kẻ ngang (-, _, ., *), thoát hoàn toàn, cấm can thiệp layout!
+                # 2. BẢO VỆ TUYỆT ĐỐI ĐƯỜNG KẺ NGANG GỐC VÀ DÒNG TRỐNG
+                # Thoát ngay lập tức để không can thiệp lề lối hay giãn dòng vào các dòng này
                 if re.match(r'^[-_=\.\* \t]+$', p.text) or text_clean == "":
                     return
-                                
-                # FIX: ĐƯA RULE SỬA CHÍNH TẢ LÊN ĐẦU TIÊN (Để không bị sót khi các rule dưới return sớm)
+                
+                # 3. CẤU HÌNH GIÃN DÒNG & KHOẢNG CÁCH ĐOẠN CHUẨN
+                if not p.text.startswith("Nơi nhận"): 
+                    p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
+                    p.paragraph_format.line_spacing = 1.3
+                    p.paragraph_format.space_before = Pt(6)
+                #p.paragraph_format.space_before = Pt(6)
+                    p.paragraph_format.space_after = Pt(0)
+                    
+                # 4. FIX: ĐƯA RULE SỬA CHÍNH TẢ LÊN ĐẦU TIÊN (Để không bị sót khi các rule dưới return sớm)
                 if "hành chánh" in p.text.lower():
                     for r in p.runs:
                         if not r.text: continue
@@ -564,7 +573,7 @@ if uploaded_file is not None:
                 if re.match(r'^[-_=\.\*]+$', text_clean):
                     p.alignment = 1 # Căn giữa đường kẻ
                     return
-            # --- QUAN TRỌNG: THỰC THI VÒNG LẶP CHO BƯỚC 3 (ĐOẠN BỊ MẤT TÍCH) ---
+            # --- QUAN TRỌNG: THỰC THI VÒNG LẶP CHO BƯỚC 3 ---
             for idx, p in enumerate(doc.paragraphs): 
                 fix_para(p, idx)
             for t in doc.tables:
@@ -574,6 +583,65 @@ if uploaded_file is not None:
                             fix_para(p, idx)
 
             # ============ THÊM KHỐI CODE NÀY VÀO ĐÂY ============
+            # ============ THÊM KHỐI CODE BƯỚC 3.1 VÀO ĐÂY ============
+            # --- BƯỚC 3.1: TRẢ LẠI GIÃN DÒNG ĐƠN (SINGLE) CHO CÁC KHỐI ĐẶC BIỆT ---
+            # 1. Ép các Bảng Layout (Header và Footer) về dòng đơn & Xử lý Nơi nhận trong Table
+            if len(doc.tables) > 0:
+                for t in doc.tables:
+                    is_layout_table = False
+                    
+                    # Quét nhanh xem bảng này có chứa từ khóa của Header/Footer không
+                    for row in t.rows:
+                        for cell in row.cells:
+                            text_check = cell.text.lower()
+                            if "cộng hòa xã hội" in text_check or "nơi nhận" in text_check:
+                                is_layout_table = True
+                                break
+                        if is_layout_table: break
+                    
+                    # Nếu là Bảng Header hoặc Bảng Footer (chứa Nơi nhận)
+                    if is_layout_table:
+                        for row in t.rows:
+                            for cell in row.cells:
+                                in_noi_nhan_cell = False # Cờ theo dõi để xử lý Nơi nhận
+                                
+                                for p_cell in cell.paragraphs:
+                                    # --- A. ÉP TOÀN BỘ CELL VỀ DÒNG ĐƠN, CÁCH ĐOẠN 0pt ---
+                                    p_cell.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+                                    p_cell.paragraph_format.space_before = Pt(0)
+                                    p_cell.paragraph_format.space_after = Pt(0)
+                                    
+                                    # --- B. XỬ LÝ FONT "NƠI NHẬN" NẰM TRONG BẢNG ---
+                                    txt_clean = p_cell.text.strip()
+                                    txt_lower = txt_clean.lower()
+                                    
+                                    if len(txt_clean) > 0 and (txt_lower.startswith("nơi nhận:") or txt_lower.startswith("nơi nhận :")):
+                                        in_noi_nhan_cell = True
+                                        p_cell.text = "" 
+                                        r = p_cell.add_run("Nơi nhận:")
+                                        r.bold = True
+                                        r.italic = True
+                                        r.font.size = Pt(12)
+                                        set_font_times(r)
+                                        p_cell.alignment = 0 
+                                        
+                                    elif in_noi_nhan_cell:
+                                        # Ép các gạch đầu dòng bên dưới Nơi nhận về Size 11
+                                        if txt_clean.startswith("-") or txt_clean.startswith("•") or "lưu:" in txt_lower:
+                                            if len(txt_clean) < 80: 
+                                                for r in p_cell.runs: 
+                                                    r.font.size = Pt(11)
+                                                    set_font_times(r)
+                            
+            # 2. Quét các dòng ngoài để thu gọn Tên loại VB (QUYẾT ĐỊNH, TỜ TRÌNH...) và Trích yếu (V/v)
+            loai_vb_list_check = ["THÔNG BÁO", "KẾ HOẠCH", "BÁO CÁO", "TỜ TRÌNH", "QUYẾT ĐỊNH", "CHỈ THỊ", "HƯỚNG DẪN", "QUY ĐỊNH", "QUY CHẾ", "PHƯƠNG ÁN"]
+            for p in doc.paragraphs:
+                txt_upper = p.text.strip().upper()
+                if txt_upper in loai_vb_list_check or txt_upper.startswith("V/V") or txt_upper.replace(" ", "").startswith("VỀVIỆC"):
+                    p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+                    p.paragraph_format.space_before = Pt(0)
+                    p.paragraph_format.space_after = Pt(0)
+            # =========================================================
             # --- SỬA LỖI TÊN CƠ QUAN CHỦ QUẢN & BAN HÀNH (CHUẨN 1 CẤP / 2 CẤP) ---
             if len(doc.tables) > 0:
                 left_cell = doc.tables[0].rows[0].cells[0]
@@ -649,13 +717,17 @@ if uploaded_file is not None:
                             set_font_times(r)
                         continue
 
-                # 2. XỬ LÝ KHỐI NƠI NHẬN (Giữ nguyên phần code cũ của bạn)
+                # 2. XỬ LÝ KHỐI NƠI NHẬN 
                 if len(text_clean) > 0 and (text_lower.startswith("nơi nhận:") or text_lower.startswith("nơi nhận :")):
                     in_noi_nhan_section = True
                     p.text = "" 
                     r = p.add_run("Nơi nhận:")
                     r.bold = True; r.italic = True; r.font.size = Pt(12); set_font_times(r)
                     p.alignment = 0 
+                    # Ép chữ "Nơi nhận:" về dòng đơn, không cách đoạn
+                    p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+                    p.paragraph_format.space_before = Pt(0)
+                    p.paragraph_format.space_after = Pt(0)
                 elif in_noi_nhan_section:
                     if text_clean.startswith("-") or text_clean.startswith("•") or "lưu:" in text_lower:
                         if len(text_clean) < 80: 
@@ -697,6 +769,10 @@ if uploaded_file is not None:
                             for r in p.runs: 
                                 r.bold = True
                                 set_font_times(r)
+                            # Ép chức vụ (GIÁM ĐỐC, PHÓ GIÁM ĐỐC...) về dòng đơn
+                            p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+                            p.paragraph_format.space_before = Pt(0)
+                            p.paragraph_format.space_after = Pt(0)
                             
                             # Ép căn giữa nếu không bị kẹt Tab hoặc không phải Nơi nhận
                             if "\t" not in text_clean and not "NƠI NHẬN" in text_upper:
