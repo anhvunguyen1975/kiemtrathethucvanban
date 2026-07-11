@@ -10,10 +10,10 @@ import os
 import unicodedata  
 import json  
 
-#from reportlab.pdfbase import pdfmetrics
-#from reportlab.pdfbase.ttfonts import TTFont
-#from reportlab.pdfgen import canvas
-#from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
 st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
@@ -186,7 +186,7 @@ def analyze_document_v6(doc):
         for row in doc.tables[0].rows:
             for cell in row.cells:
                 elements_to_check.extend(cell.paragraphs)
-    elements_to_check.extend(doc.paragraphs[:1])
+    elements_to_check.extend(doc.paragraphs[:5])
 
     for p in elements_to_check:
         text_clean = p.text.replace("|", "").strip()
@@ -194,7 +194,7 @@ def analyze_document_v6(doc):
         text_lower = text_clean.lower()
         if "cấp nước bạc liêu" in text_lower or text_lower == "công ty cổ phần":
             if text_clean != text_clean.upper() or is_paragraph_bold(p):
-                error_list.append(f"❌ - [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` tại góc trái văn bản chưa được VIẾT HOA hoặc **IN ĐẬM**.")
+                error_list.append(f"❌ - [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` tại góc trái văn bản chưa được VIẾT HOA hoặc in đậm.")
             agency_checked = True
             #if text_clean != is_paragraph_bold(p):
             #    error_list.append(f"- [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` → tại góc trái văn bản đang được *IN ĐẬM* .")
@@ -428,7 +428,6 @@ if uploaded_file is not None:
                         set_font_times(r)
                     return
                 # ====================================================
-                
                 # --- SỬA LỖI 2: CHUẨN HÓA CỠ CHỮ 14 CHO TOÀN BỘ CÁC DÒNG NỘI DUNG CHÍNH ---
                 tu_khoa_noi_dung = ["vì vậy", "kính mong", "đề nghị", "kính trình", "do đó", "căn cứ", "thực hiện", "nhằm", "để", "sau khi"]
                 
@@ -551,7 +550,7 @@ if uploaded_file is not None:
                     return
 
                # 8. ÉP CHUẨN TRÍCH YẾU (V/v...) -> Cỡ 13, Đứng, GIỮ NGUYÊN CHỮ HOA/THƯỜNG GỐC
-                if text_upper.startswith("V/V") or text_upper.replace(" ", "").startswith("VỀVIỆC"):
+                if text_upper.startswith("V/V") or text_upper.replace(" ", "").startswith("VỀ VIỆC"):
                     p.alignment = 1 # Căn giữa trích yếu
                     for r in p.runs:
                         r.font.size = Pt(13)
@@ -641,7 +640,7 @@ if uploaded_file is not None:
                     if text_lower.startswith("căn cứ") or text_lower.startswith("theo ") or text_lower.startswith("thực hiện") or len(text_clean) > 90:
                         in_kinh_gui_section = False
                     else:
-                        # Các dòng con (Chủ tịch, Tổng Giám đốc...) -> ÉP THỤT VÀO 02 TAB (2.54 cm)
+                        # Các dòng con (Chủ tịch, Tổng Giám đốc...) -> ÉP THỤT VÀO 03 TAB (3.81 cm)
                         p.alignment = 0 
                         p.paragraph_format.left_indent = Cm(3.81) # Thụt lề trái 3 tab
                         p.paragraph_format.first_line_indent = None
@@ -690,7 +689,7 @@ if uploaded_file is not None:
                             continue 
                             
                         # 3. CHỐT CHẶN 2: Nếu dòng đang thụt 2 Tab (thuộc nhóm Kính gửi) -> BỎ QUA NGAY!
-                        if p.paragraph_format.left_indent == Cm(2.54):
+                        if p.paragraph_format.left_indent == Cm(3.81):
                             continue
                             
                         # 4. CHỐT CHẶN 3: Loại trừ các dòng cố định khác
