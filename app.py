@@ -10,7 +10,6 @@ import os
 import unicodedata  
 import json  
 from docx.enum.text import WD_LINE_SPACING
-
 #from reportlab.pdfbase import pdfmetrics
 #from reportlab.pdfbase.ttfonts import TTFont
 #from reportlab.pdfgen import canvas
