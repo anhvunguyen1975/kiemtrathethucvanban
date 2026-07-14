@@ -644,7 +644,8 @@ if uploaded_file is not None:
             st.download_button(
                 label="📥 TẢI XUỐNG BẢN ĐÃ FIX (NĐ30)",
                 data=file,
-                file_name="BAWACO_Chuẩn_Hóa_NĐ30.docx",
+                # file_name="BAWACO_Chuẩn_Hóa_NĐ30.docx",
+                file_name="Da_Chuan_Hoa_" + uploaded_file.name,
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 type="primary",
                 use_container_width=True
