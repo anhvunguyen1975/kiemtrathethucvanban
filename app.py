@@ -241,7 +241,7 @@ def analyze_document_v6(doc):
 
 # --- GIAO DIỆN CHÍNH ---
 st.title("KIỂM TRA THỂ THỨC VĂN BẢN (NĐ 30)")
-st.markdown("🚀 **Phiên bản V6.8 (Trích yếu Fix):** Phân loại định dạng Trích yếu Tờ trình (In đậm) và Công văn (Không in đậm).")
+st.markdown("💧** Một sản phẩm của BAWACO. **")
 st.markdown("---")
 
 with st.sidebar:
