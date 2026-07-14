@@ -241,7 +241,7 @@ def analyze_document_v6(doc):
 
 # --- GIAO DIỆN CHÍNH ---
 st.title("KIỂM TRA THỂ THỨC VĂN BẢN (NĐ 30)")
-st.markdown("💧**Một sản phẩm của BAWACO.**")
+st.markdown("💧**Chương trình dùng cho nội bộ BAWACO.**")
 st.markdown("---")
 
 with st.sidebar:
