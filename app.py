@@ -10,46 +10,30 @@ import os
 import unicodedata  
 import json  
 
-#from reportlab.pdfbase import pdfmetrics
-#from reportlab.pdfbase.ttfonts import TTFont
-#from reportlab.pdfgen import canvas
-#from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
-st.set_page_config(
-    page_title="Kiểm tra thể thức văn bản NĐ 30", 
-    page_icon="🛡️", 
-    layout="wide",
-    initial_sidebar_state="expanded" 
-)
+st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
 custom_css = """
 <style>
-  /* Ẩn các nút rác của Streamlit Cloud */
   .stAppDeployButton {display: none !important;}
-  #MainMenu {visibility: hidden;}
-  header {background-color: transparent !important;} /* Ngăn thanh header che mất nút */
+  #MainMenu { visibility: hidden !important; }
+  header {visibility: hidden;}
+  footer {visibility: hidden;}
+  .viewerBadge_container__171of {display: none !important;}
   
-  /* Ép nút mũi tên hiển thị và mang màu sắc nổi bật */
   [data-testid="collapsedControl"] {
       display: flex !important;
       visibility: visible !important;
-      z-index: 999999 !important;
-  }
-  
-  /* Ép màu cho icon bên trong nút để chống tàng hình */
-  [data-testid="collapsedControl"] svg {
-      fill: #ff4b4b !important; /* Đổi sang màu đỏ hoặc màu bạn thích */
-      color: #ff4b4b !important;
+      z-index: 999999 !important; 
+      background-color: transparent !important;
   }
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
-st.set_page_config(
-    page_title="Kiểm tra thể thức văn bản NĐ 30", 
-    page_icon="🛡️", 
-    layout="wide",
-    initial_sidebar_state="expanded" 
-)
 
 # --- DANH MỤC LOẠI VĂN BẢN CHUẨN NĐ 30 ---
 LOAI_VAN_BAN_CHUAN = {
@@ -104,7 +88,6 @@ def set_font_times(run):
     rFonts.set(qn('w:eastAsia'), 'Times New Roman')
     rFonts.set(qn('w:cs'), 'Times New Roman')
 
-# --- HÀM KIỂM TRA ĐƯỜNG KẺ NGANG (CHỈ CẢNH BÁO) ---
 def check_agency_line_comprehensive(doc):
     warnings = []
     return warnings
@@ -165,7 +148,6 @@ def analyze_document_v6(doc):
             if not rb: return False
         return True
 
-    # --- KIỂM TRA ĐỊNH DẠNG TÊN CƠ QUAN (CHỈ QUÉT VÙNG HEADER) ---
     agency_checked = False
     elements_to_check = []
     if doc.tables:
@@ -177,12 +159,18 @@ def analyze_document_v6(doc):
     for p in elements_to_check:
         text_clean = p.text.replace("|", "").strip()
         if not text_clean: continue
+        
+        # Bỏ qua các đoạn văn dài (nội dung, trích yếu) để tránh nhận diện nhầm
+        if len(text_clean) > 60:
+            continue
+            
         text_lower = text_clean.lower()
+        
+        # Bắt đúng tên cơ quan hoặc các dòng cắt ngắn của tên cơ quan
         if "cấp nước bạc liêu" in text_lower or text_lower == "công ty cổ phần":
-            if text_clean != text_clean.upper() or is_paragraph_bold(p):
-                error_list.append(f"❌ - [Lỗi] Tên cơ quan chủ quản: `[{text_clean}]` tại góc trái văn bản chưa được VIẾT HOA hoặc in đậm.")
+            if text_clean != text_clean.upper() or not is_paragraph_bold(p):
+                error_list.append(f"❌ - [Lỗi] Tên cơ quan ban hành: `[{text_clean}]` tại góc trái chưa được VIẾT HOA và In đậm.")
             agency_checked = True
-            break 
 
     doc_text = "\n".join([p.text for p in all_paragraphs])
     has_noi_nhan = False
@@ -297,19 +285,16 @@ if uploaded_file is not None:
             for notation, choices in ambiguous_dict.items():
                 user_resolutions[notation] = st.selectbox(f"Chọn đuôi đúng cho '{notation}':", options=choices)
 
-    # --- HỘP CÔNG CỤ XỬ LÝ (AUTOFIX V6.8) ---
     st.markdown("### 🛠️ HỘP CÔNG CỤ XỬ LÝ TỰ ĐỘNG CHUẨN HOÁ")
     if st.button("🪄 TỰ ĐỘNG FIX TOÀN DIỆN (NĐ30)", type="primary"):
         with st.spinner("Đang định dạng lại lề trang, phông chữ và nội dung..."):
             
-            # --- BƯỚC 1: CĂN LỀ TRANG CHUẨN ---
             for section in doc.sections:
                 section.top_margin = Cm(2.0)
                 section.bottom_margin = Cm(2.0)
                 section.left_margin = Cm(3.0)
                 section.right_margin = Cm(1.5)
 
-           # --- BƯỚC 2: AUTOFIX THIẾU KHỐI "NƠI NHẬN:" ---
             has_noi_nhan_local = False
             for p in doc.paragraphs:
                 if p.text.strip().lower().startswith("nơi nhận"):
@@ -335,17 +320,15 @@ if uploaded_file is not None:
                     r = new_p.add_run("Nơi nhận:")
                     r.bold = True; r.italic = True; r.font.size = Pt(12); set_font_times(r)
 
-            # --- BƯỚC 3: QUÉT HEADER & ÉP CHUẨN CỠ CHỮ THEO TUYẾN TÍNH ƯU TIÊN ---
-            def fix_para(p, paragraph_index):
+            # CẬP NHẬT MỚI: Truyền thêm cờ is_in_table để nhận diện không gian định dạng
+            def fix_para(p, paragraph_index, is_in_table=False):
                 text_clean = p.text.replace("|", "").strip()
     
-                # BẢO VỆ TUYỆT ĐỐI ĐƯỜNG KẺ NGANG GỐC VÀ DÒNG TRỐNG
                 if re.match(r'^[-_=\.\* \t]+$', p.text) or text_clean == "":
                     if re.match(r'^[-_=\.\* \t]+$', p.text):
                         p.alignment = 1
                     return
                                 
-                # FIX HÀNH CHÁNH -> HÀNH CHÍNH
                 if "hành chánh" in p.text.lower():
                     for r in p.runs:
                         if not r.text: continue
@@ -364,45 +347,33 @@ if uploaded_file is not None:
                                 for run_obj in [r1, r2]:
                                     run_obj.text = run_obj.text.replace("chánh", "chính").replace("Chánh", "Chính").replace("CHÁNH", "CHÍNH")
 
-                # Cập nhật lại biến text sau khi đã sửa chính tả "Hành chính"
                 text_clean = p.text.replace("|", "").strip()
                 text_upper = unicodedata.normalize('NFC', text_clean.upper())
                 text_lower = text_clean.lower()
 
-                # ====================================================
-                # ƯU TIÊN TUYỆT ĐỐI SỐ 1: KHỐI TRÍCH YẾU NỘI DUNG (Về việc... / V/v...)
-                # ====================================================
+                # VÁ LỖI 2: PHÂN LOẠI "V/v" THÔNG QUA VỊ TRÍ (CÓ TRONG TABLE HAY KHÔNG)
                 if text_lower.startswith("về việc") or text_lower.startswith("v/v"):
-                    p.alignment = 1 # Căn giữa chuẩn NĐ 30
+                    p.alignment = 1 
                     p.paragraph_format.left_indent = None
                     p.paragraph_format.right_indent = None
                     p.paragraph_format.first_line_indent = None
                     
-                    # Khử khoảng trắng thừa đầu câu
                     for r in p.runs:
                         if r.text:
                             r.text = r.text.lstrip("\t").lstrip(" ")
                             break
                             
-                    # Phân loại: Công văn (V/v) -> Không đậm. Khác (Về việc) -> In đậm, cỡ 14.
-                    is_cong_van = text_lower.startswith("v/v")
-                    
                     for r in p.runs:
-                        if is_cong_van:
+                        if is_in_table:
                             r.font.size = Pt(13)
                             r.bold = False
                         else:
                             r.font.size = Pt(14)
-                            r.bold = True # Đã ép in đậm lại cho Tờ trình, Quyết định...
+                            r.bold = True
                         r.italic = False
                         set_font_times(r)
                     return
 
-                # ====================================================
-                # LỚP 1: CÁC TIÊU ĐỀ HEADER NĐ 30
-                # ====================================================
-
-                # 1. ÉP CHUẨN QUỐC HIỆU -> Cỡ 12, IN ĐẬM, CHỮ HOA
                 if "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" in text_upper or re.search(r"CỘNG\s*H[ÒOÀA]+\s*XÃ\s*HỘI", text_upper):
                     p.text = ""
                     r = p.add_run("CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM")
@@ -413,24 +384,16 @@ if uploaded_file is not None:
                     p.paragraph_format.first_line_indent = None
                     return
                         
-                # 2. ÉP CHUẨN TIÊU NGỮ -> Cỡ 13, IN ĐẬM
                 if "độc lập" in text_lower and "hạnh phúc" in text_lower:
                     p.text = ""
                     r = p.add_run("Độc lập - Tự do - Hạnh phúc")
                     r.bold = True; r.font.size = Pt(13); set_font_times(r)
-                    #rPr = r._r.get_or_add_rPr()
-                    #u = OxmlElement('w:u')
-                    #u.set(qn('w:val'), 'single') 
-                    #u.set(qn('w:sz'), '0.1')
-                    #u.set(qn('w:space'), '12')  
-                    #rPr.append(u)
                     p.alignment = 1
                     p.paragraph_format.left_indent = None
                     p.paragraph_format.right_indent = None
                     p.paragraph_format.first_line_indent = None
                     return
 
-                # 3. ÉP CHUẨN ĐỊA DANH, NGÀY THÁNG -> Cỡ 14, In nghiêng
                 if "ngày" in text_lower and "tháng" in text_lower and "năm" in text_lower:
                     if len(text_clean) < 70 and not any(x in text_lower for x in ["căn cứ", "luật", "nghị định", "quyết định", "thông tư", "v/v", "về việc"]):
                         match_year = re.search(r"năm\s*(\d{4})", text_clean)
@@ -444,7 +407,6 @@ if uploaded_file is not None:
                             r.italic = True; r.font.size = Pt(14); set_font_times(r)
                         return
 
-                # 4. ÉP CHUẨN SỐ KÝ HIỆU VĂN BẢN
                 if re.match(r"^\s*Số\s*:", text_clean, re.IGNORECASE) or text_lower.startswith("số:"):
                     temp_text = p.text
                     def fix_notation(match):
@@ -474,7 +436,6 @@ if uploaded_file is not None:
                         r.font.size = Pt(13); r.bold = False; set_font_times(r)
                     return
 
-                # 5. ÉP CHUẨN TÊN CƠ QUAN BAN HÀNH -> Cỡ 13, IN ĐẬM (Khi nằm ở góc trái trang)
                 if paragraph_index <= 2:
                     if any(x in text_upper for x in ["CÔNG TY", "CẤP NƯỚC", "PHÒNG", "BAN", "XÍ NGHIỆP", "TRUNG TÂM"]):
                         if not any(x in text_upper for x in ["CỘNG HÒA", "ĐỘC LẬP", "SỐ:", "NGÀY", "THÁNG", "NĂM", "CĂN CỨ", "CHỦ TỊCH", "GIÁM ĐỐC", "BAN QUẢN LÝ", "KÍNH GỬI", "V/V", "VỀ VIỆC"]):
@@ -489,7 +450,6 @@ if uploaded_file is not None:
                             p.paragraph_format.first_line_indent = None
                             return 
 
-                # 6. ÉP CHUẨN "KÍNH GỬI" -> Cỡ 14
                 if text_lower.startswith("kính gửi") or text_lower.startswith("kính gởi"):
                     for r in p.runs:
                         r.bold = False; r.italic = False; r.font.size = Pt(14); set_font_times(r)
@@ -502,7 +462,6 @@ if uploaded_file is not None:
                     p.paragraph_format.first_line_indent = Cm(1.27) 
                     return
 
-                # 7. ÉP CHUẨN TÊN LOẠI VĂN BẢN -> Cỡ 14, IN ĐẬM
                 loai_vb_list = ["THÔNG BÁO", "KẾ HOẠCH", "BÁO CÁO", "TỜ TRÌNH", "QUYẾT ĐỊNH", "CHỈ THỊ", "HƯỚNG DẪN", "QUY ĐỊNH", "QUY CHẾ", "PHƯƠNG ÁN"]
                 if text_upper in loai_vb_list:
                     for r in p.runs:
@@ -513,9 +472,6 @@ if uploaded_file is not None:
                     p.paragraph_format.first_line_indent = None
                     return
 
-                # ====================================================
-                # LỚP 2: DÒNG NỘI DUNG CHÍNH (ĐỂ CUỐI CÙNG LÀM BỘ LỌC HẬU BỊ)
-                # ====================================================
                 tu_khoa_noi_dung = ["vì vậy", "kính mong", "đề nghị", "kính trình", "do đó", "căn cứ", "thực hiện", "nhằm", "để", "sau khi"]
                 is_noi_dung = False
                 
@@ -539,16 +495,16 @@ if uploaded_file is not None:
                         set_font_times(r)
                     return
 
-            # --- VÒNG LẶP THỰC THI BƯỚC 3 ---
+            # CẬP NHẬT MỚI: Khai báo rõ vị trí để phân biệt trong bảng/ngoài bảng
             for idx, p in enumerate(doc.paragraphs): 
-                fix_para(p, idx)
+                fix_para(p, idx, is_in_table=False)
             for t in doc.tables:
                 for row in t.rows:
                     for cell in row.cells:
                         for idx, p in enumerate(cell.paragraphs):
-                            fix_para(p, idx)
+                            fix_para(p, idx, is_in_table=True)
 
-            # --- BƯỚC 4: HẬU XỬ LÝ ĐẶC BIỆT KHỐI TÊN CƠ QUAN Ô TRÁI TABLE ---
+            # VÁ LỖI 1: GIỮ NGUYÊN IN ĐẬM CHO "CÔNG TY CỔ PHẦN"
             if len(doc.tables) > 0:
                 left_cell = doc.tables[0].rows[0].cells[0]
                 co_quan_paras = []
@@ -571,13 +527,19 @@ if uploaded_file is not None:
                     p.text = ""
                     r = p.add_run(full_text)
                     r.font.size = Pt(13)
+                    
                     if tong_so_dong == 1:
                         r.bold = True
                     else:
                         if i == tong_so_dong - 1:
                             r.bold = True
                         else:
-                            r.bold = False
+                            # NGOẠI LỆ: Nếu bản thân dòng trên chính là công ty
+                            if full_text in ["CÔNG TY CỔ PHẦN", "CÔNG TY CP", "TỔNG CÔNG TY"]:
+                                r.bold = True
+                            else:
+                                r.bold = False
+                                
                     set_font_times(r)
 
             # --- BƯỚC 5: POST-PROCESSING KHỐI KÍNH GỬI & NƠI NHẬN ---
@@ -647,7 +609,6 @@ if uploaded_file is not None:
                         for r in p.runs:
                             r.bold = True; r.italic = False; r.font.size = Pt(14); set_font_times(r)
                             
-            # BƯỚC 6: KIỂM TRA LẠI DẤU CÂU (LỖI KHOẢNG TRẮNG TRƯỚC DẤU CHẤM, PHẨY)
             for p in doc.paragraphs:
                 if not re.match(r'^[-_=\.\* \t]+$', p.text) and p.text.strip():
                     for r in p.runs:
@@ -660,7 +621,6 @@ if uploaded_file is not None:
             st.download_button(
                 label="📥 TẢI XUỐNG BẢN ĐÃ FIX (NĐ30)",
                 data=file,
-                # file_name="BAWACO_Chuẩn_Hóa_NĐ30.docx",
                 file_name="Da_Chuan_Hoa_" + uploaded_file.name,
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 type="primary",
