@@ -10,10 +10,10 @@ import os
 import unicodedata  
 import json  
 
-#from reportlab.pdfbase import pdfmetrics
-#from reportlab.pdfbase.ttfonts import TTFont
-#from reportlab.pdfgen import canvas
-#from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 # --- CẤU HÌNH GIAO DIỆN STREAMLIT ---
 st.set_page_config(page_title="Kiểm tra thể thức văn bản NĐ 30", page_icon="💧", layout="wide", initial_sidebar_state="expanded")
@@ -88,6 +88,28 @@ def set_font_times(run):
     rFonts.set(qn('w:eastAsia'), 'Times New Roman')
     rFonts.set(qn('w:cs'), 'Times New Roman')
 
+# --- HÀM THAY THẾ TEXT AN TOÀN TUYỆT ĐỐI (GIỮ NGUYÊN SHAPE/DRAWING CỦA ĐƯỜNG KẺ) ---
+def safe_replace_para_text(p, new_text, bold=False, italic=False, size_pt=13):
+    t_nodes = []
+    for r in p.runs:
+        t_nodes.extend(r._element.findall(qn('w:t')))
+    if t_nodes:
+        t_nodes[0].text = new_text
+        for t_node in t_nodes[1:]:
+            t_node.text = ""
+        for r in p.runs:
+            if r._element.findall(qn('w:t')):
+                r.bold = bold
+                r.italic = italic
+                r.font.size = Pt(size_pt)
+                set_font_times(r)
+    else:
+        r = p.add_run(new_text)
+        r.bold = bold
+        r.italic = italic
+        r.font.size = Pt(size_pt)
+        set_font_times(r)
+
 def check_agency_line_comprehensive(doc):
     warnings = []
     return warnings
@@ -160,13 +182,11 @@ def analyze_document_v6(doc):
         text_clean = p.text.replace("|", "").strip()
         if not text_clean: continue
         
-        # Bỏ qua các đoạn văn dài (nội dung, trích yếu) để tránh nhận diện nhầm
         if len(text_clean) > 60:
             continue
             
         text_lower = text_clean.lower()
         
-        # Bắt đúng tên cơ quan hoặc các dòng cắt ngắn của tên cơ quan
         if "cấp nước bạc liêu" in text_lower or text_lower == "công ty cổ phần":
             if text_clean != text_clean.upper() or not is_paragraph_bold(p):
                 error_list.append(f"❌ - [Lỗi] Tên cơ quan ban hành: `[{text_clean}]` tại góc trái chưa được VIẾT HOA và In đậm.")
@@ -317,10 +337,8 @@ if uploaded_file is not None:
                 
                 if insert_p is not None:
                     new_p = insert_p.insert_paragraph_before()
-                    r = new_p.add_run("Nơi nhận:")
-                    r.bold = True; r.italic = True; r.font.size = Pt(12); set_font_times(r)
+                    safe_replace_para_text(new_p, "Nơi nhận:", bold=True, italic=True, size_pt=12)
 
-            # CẬP NHẬT MỚI: Truyền thêm cờ is_in_table để nhận diện không gian định dạng
             def fix_para(p, paragraph_index, is_in_table=False):
                 text_clean = p.text.replace("|", "").strip()
     
@@ -351,7 +369,6 @@ if uploaded_file is not None:
                 text_upper = unicodedata.normalize('NFC', text_clean.upper())
                 text_lower = text_clean.lower()
 
-                # VÁ LỖI 2: PHÂN LOẠI "V/v" THÔNG QUA VỊ TRÍ (CÓ TRONG TABLE HAY KHÔNG)
                 if text_lower.startswith("về việc") or text_lower.startswith("v/v"):
                     p.alignment = 1 
                     p.paragraph_format.left_indent = None
@@ -374,39 +391,38 @@ if uploaded_file is not None:
                         set_font_times(r)
                     return
 
+                # FIX QUỐC HIỆU AN TOÀN ĐƯỜNG KẺ
                 if "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" in text_upper or re.search(r"CỘNG\s*H[ÒOÀA]+\s*XÃ\s*HỘI", text_upper):
-                    p.text = ""
-                    r = p.add_run("CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM")
-                    r.bold = True; r.font.size = Pt(12); set_font_times(r)
+                    safe_replace_para_text(p, "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM", bold=True, size_pt=12)
                     p.alignment = 1
                     p.paragraph_format.left_indent = None
                     p.paragraph_format.right_indent = None
                     p.paragraph_format.first_line_indent = None
                     return
                         
+                # FIX TIÊU NGỮ AN TOÀN ĐƯỜNG KẺ
                 if "độc lập" in text_lower and "hạnh phúc" in text_lower:
-                    p.text = ""
-                    r = p.add_run("Độc lập - Tự do - Hạnh phúc")
-                    r.bold = True; r.font.size = Pt(13); set_font_times(r)
+                    safe_replace_para_text(p, "Độc lập - Tự do - Hạnh phúc", bold=True, size_pt=13)
                     p.alignment = 1
                     p.paragraph_format.left_indent = None
                     p.paragraph_format.right_indent = None
                     p.paragraph_format.first_line_indent = None
                     return
 
+                # FIX ĐỊA DANH NGÀY THÁNG AN TOÀN ĐƯỜNG KẺ (Bỏ p.text cũ)
                 if "ngày" in text_lower and "tháng" in text_lower and "năm" in text_lower:
                     if len(text_clean) < 70 and not any(x in text_lower for x in ["căn cứ", "luật", "nghị định", "quyết định", "thông tư", "v/v", "về việc"]):
                         match_year = re.search(r"năm\s*(\d{4})", text_clean)
                         year_str = match_year.group(1) if match_year else "2026"
-                        p.text = f"{HIDDEN_CONFIG['dia_danh_chuan']}, ngày    tháng    năm {year_str}"
+                        new_date_text = f"{HIDDEN_CONFIG['dia_danh_chuan']}, ngày    tháng    năm {year_str}"
+                        safe_replace_para_text(p, new_date_text, bold=False, italic=True, size_pt=14)
                         p.alignment = 1
                         p.paragraph_format.left_indent = None
                         p.paragraph_format.right_indent = None
                         p.paragraph_format.first_line_indent = None
-                        for r in p.runs: 
-                            r.italic = True; r.font.size = Pt(14); set_font_times(r)
                         return
 
+                # FIX SỐ KÝ HIỆU AN TOÀN ĐƯỜNG KẺ (Bỏ p.text cũ)
                 if re.match(r"^\s*Số\s*:", text_clean, re.IGNORECASE) or text_lower.startswith("số:"):
                     temp_text = p.text
                     def fix_notation(match):
@@ -427,24 +443,19 @@ if uploaded_file is not None:
 
                     temp_text = re.sub(r"^\s*s[ốo]:\s*", "Số: ", temp_text, flags=re.IGNORECASE)
                     temp_text = re.sub(r"/\s*([A-ZĐa-zđ0-9]+)(?:\s*-\s*([A-ZĐa-zđ0-9]*))?", fix_notation, temp_text)
-                    p.text = temp_text
+                    
+                    safe_replace_para_text(p, temp_text, bold=False, size_pt=13)
                     p.alignment = 1
                     p.paragraph_format.left_indent = None
                     p.paragraph_format.right_indent = None
                     p.paragraph_format.first_line_indent = None
-                    for r in p.runs: 
-                        r.font.size = Pt(13); r.bold = False; set_font_times(r)
                     return
 
-                # ÉP CHUẨN TÊN CƠ QUAN BAN HÀNH (Thêm điều kiện độ dài < 80 ký tự để tránh bắt nhầm body text)
+                # FIX TÊN CƠ QUAN NGOÀI BẢNG AN TOÀN ĐƯỜNG KẺ
                 if paragraph_index <= 2 and len(text_clean) < 80:
                     if any(x in text_upper for x in ["CÔNG TY", "CẤP NƯỚC", "PHÒNG", "BAN", "XÍ NGHIỆP", "TRUNG TÂM"]):
                         if not any(x in text_upper for x in ["CỘNG HÒA", "ĐỘC LẬP", "SỐ:", "NGÀY", "THÁNG", "NĂM", "CĂN CỨ", "CHỦ TỊCH", "GIÁM ĐỐC", "BAN QUẢN LÝ", "KÍNH GỬI", "V/V", "VỀ VIỆC"]):
-                            p.text = "" 
-                            r = p.add_run(text_clean.upper())
-                            r.font.size = Pt(13)
-                            set_font_times(r)
-                            r.bold = True 
+                            safe_replace_para_text(p, text_clean.upper(), bold=True, size_pt=13)
                             p.alignment = 1 
                             p.paragraph_format.left_indent = None
                             p.paragraph_format.right_indent = None
@@ -496,7 +507,6 @@ if uploaded_file is not None:
                         set_font_times(r)
                     return
 
-            # CẬP NHẬT MỚI: Khai báo rõ vị trí để phân biệt trong bảng/ngoài bảng
             for idx, p in enumerate(doc.paragraphs): 
                 fix_para(p, idx, is_in_table=False)
             for t in doc.tables:
@@ -505,7 +515,7 @@ if uploaded_file is not None:
                         for idx, p in enumerate(cell.paragraphs):
                             fix_para(p, idx, is_in_table=True)
 
-            # VÁ LỖI 1: GIỮ NGUYÊN IN ĐẬM CHO "CÔNG TY CỔ PHẦN"
+            # VÁ LỖI 1: FIX TÊN CƠ QUAN TRONG BẢNG AN TOÀN ĐƯỜNG KẺ
             if len(doc.tables) > 0:
                 left_cell = doc.tables[0].rows[0].cells[0]
                 co_quan_paras = []
@@ -525,23 +535,12 @@ if uploaded_file is not None:
                     p.paragraph_format.first_line_indent = None
                     
                     full_text = re.sub(r'\s+', ' ', p.text.replace("|", "").strip().upper())
-                    p.text = ""
-                    r = p.add_run(full_text)
-                    r.font.size = Pt(13)
                     
-                    if tong_so_dong == 1:
-                        r.bold = True
-                    else:
-                        if i == tong_so_dong - 1:
-                            r.bold = True
-                        else:
-                            # NGOẠI LỆ: Nếu bản thân dòng trên chính là công ty
-                            if full_text in ["CÔNG TY CỔ PHẦN", "CÔNG TY CP", "TỔNG CÔNG TY"]:
-                                r.bold = True
-                            else:
-                                r.bold = False
+                    is_bold = False
+                    if tong_so_dong == 1 or i == tong_so_dong - 1 or full_text in ["CÔNG TY CỔ PHẦN", "CÔNG TY CP", "TỔNG CÔNG TY"]:
+                        is_bold = True
                                 
-                    set_font_times(r)
+                    safe_replace_para_text(p, full_text, bold=is_bold, size_pt=13)
 
             # --- BƯỚC 5: POST-PROCESSING KHỐI KÍNH GỬI & NƠI NHẬN ---
             in_noi_nhan_section = False
@@ -583,9 +582,7 @@ if uploaded_file is not None:
 
                 if len(text_clean) > 0 and (text_lower.startswith("nơi nhận:") or text_lower.startswith("nơi nhận :")):
                     in_noi_nhan_section = True
-                    p.text = "" 
-                    r = p.add_run("Nơi nhận:")
-                    r.bold = True; r.italic = True; r.font.size = Pt(12); set_font_times(r)
+                    safe_replace_para_text(p, "Nơi nhận:", bold=True, italic=True, size_pt=12)
                     p.alignment = 0 
                 elif in_noi_nhan_section:
                     if text_clean.startswith("-") or text_clean.startswith("+") or text_clean.startswith("•"):
