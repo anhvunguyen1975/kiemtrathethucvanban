@@ -436,7 +436,8 @@ if uploaded_file is not None:
                         r.font.size = Pt(13); r.bold = False; set_font_times(r)
                     return
 
-                if paragraph_index <= 2:
+                # ÉP CHUẨN TÊN CƠ QUAN BAN HÀNH (Thêm điều kiện độ dài < 80 ký tự để tránh bắt nhầm body text)
+                if paragraph_index <= 2 and len(text_clean) < 80:
                     if any(x in text_upper for x in ["CÔNG TY", "CẤP NƯỚC", "PHÒNG", "BAN", "XÍ NGHIỆP", "TRUNG TÂM"]):
                         if not any(x in text_upper for x in ["CỘNG HÒA", "ĐỘC LẬP", "SỐ:", "NGÀY", "THÁNG", "NĂM", "CĂN CỨ", "CHỦ TỊCH", "GIÁM ĐỐC", "BAN QUẢN LÝ", "KÍNH GỬI", "V/V", "VỀ VIỆC"]):
                             p.text = "" 
@@ -448,7 +449,7 @@ if uploaded_file is not None:
                             p.paragraph_format.left_indent = None
                             p.paragraph_format.right_indent = None
                             p.paragraph_format.first_line_indent = None
-                            return 
+                            return
 
                 if text_lower.startswith("kính gửi") or text_lower.startswith("kính gởi"):
                     for r in p.runs:
